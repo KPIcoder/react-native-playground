@@ -1,7 +1,7 @@
 import {Tabs} from "expo-router";
 import {Platform} from "react-native";
 import React from "react";
-import {IconSymbol} from "@/components/ui-kit/IconSymbol";
+import {IconSymbol} from "@/ui-kit/IconSymbol";
 import MealsDataProvider from "@/modules/Meal/contexts/MealsDataContext";
 import {mealsHttp} from "@/modules/Meal/repository/MealsHttp";
 
