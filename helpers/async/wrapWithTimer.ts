@@ -1,0 +1,1 @@
+export const wrapWithTimer =<T> (item: T, t: number = 300) => new Promise((resolve) => setTimeout(() => resolve(item), t)) as Promise<T>

@@ -1,10 +1,16 @@
-import {View, Text} from "react-native";
+import {View} from "react-native";
 import React from "react";
+import AddMealForm from "@/modules/Meal/components/AddMealForm";
+import {useMealsRepository} from "@/modules/Meal/hooks/useMealsRepository";
+
 
 export default function ExploreScreen() {
+
+    const {addMeal} = useMealsRepository()
+
     return (
         <View style={[styles.container]}>
-            <Text style={{color: '#000'}}>Hello Explore</Text>
+            <AddMealForm handleAdd={addMeal} />
         </View>
     )
 }

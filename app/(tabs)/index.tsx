@@ -1,20 +1,16 @@
-import {View, Text} from "react-native";
+import {View} from "react-native";
 import React from "react";
-import {useQuery} from "@tanstack/react-query";
+import MealList from "@/modules/Meal/components/MealList";
+import {useMealsRepository} from "@/modules/Meal/hooks/useMealsRepository";
 
-const fetchUsers = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    if (!response.ok) throw new Error('Failed to fetch users');
-    return response.json() as unknown as {name: string}[];
-};
 
 export default function HomeScreen() {
-    const { data, error, isLoading } = useQuery({ queryKey: ['users'], queryFn: fetchUsers })
 
+    const {meals} = useMealsRepository()
 
     return (
         <View style={[styles.container]}>
-                {data?.map((user, index) => (<Text key={index}>{user.name}</Text>))}
+            <MealList meals={meals} />
         </View>
     )
 }
