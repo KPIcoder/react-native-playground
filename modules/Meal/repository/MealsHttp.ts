@@ -1,6 +1,7 @@
 import {MealsRepository} from "@/modules/Meal/interfaces/MealsRepository";
 import {Meal} from "@/modules/Meal/interfaces/Meal";
 import {MAIN_API_BASE_URL} from "@/constants/external-links";
+import {mapMealApiToModel} from "@/modules/Meal/mappers";
 
 export class MealsHttp implements MealsRepository {
     meals: Meal[];
@@ -17,9 +18,9 @@ export class MealsHttp implements MealsRepository {
         }
 
         const meals = await response.json();
-        this.meals = meals;
+        this.meals = meals.map(mapMealApiToModel);
 
-        return meals;
+        return this.meals;
     }
 
     async addMeal(meal: Meal): Promise<Meal> {
@@ -36,12 +37,13 @@ export class MealsHttp implements MealsRepository {
         }
 
         const newMeal = await response.json();
-        this.meals.push(newMeal);
+        const mealModel = mapMealApiToModel(newMeal);
+        this.meals.push(mealModel);
 
-        return newMeal;
+        return mealModel;
     }
     async updateMeal(meal: Meal): Promise<Meal> {
-        const response = await fetch(`${MAIN_API_BASE_URL}/meals`, {
+        const response = await fetch(`${MAIN_API_BASE_URL}/meals/${meal.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -54,14 +56,15 @@ export class MealsHttp implements MealsRepository {
         }
 
         const newMeal = await response.json();
+        const mealModel = mapMealApiToModel(newMeal);
         const oldMealIndex = this.meals.findIndex((m) => m.id === meal.id);
 
-        this.meals[oldMealIndex] = newMeal
+        this.meals[oldMealIndex] = mealModel
 
-        return newMeal;
+        return mealModel;
     }
     async deleteMeal(meal: Meal): Promise<void> {
-        const response = await fetch(`${MAIN_API_BASE_URL}/meals`, {
+        const response = await fetch(`${MAIN_API_BASE_URL}/meals/${meal.id}`, {
             method: "DELETE",
         })
 

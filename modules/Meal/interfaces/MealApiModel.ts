@@ -1,4 +1,4 @@
-export interface MealDto {
+export interface MealApiModel {
     id: number;
     name: string;
     price: number;
