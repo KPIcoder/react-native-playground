@@ -11,9 +11,7 @@ interface Props {
 
 export default function MealCard({ meal, handleUpdate, handleDelete }: Props) {
     const { name, price, isAvailable } = meal;
-
-    console.log(meal)
-
+    
     return (
         <Card
             title={name}

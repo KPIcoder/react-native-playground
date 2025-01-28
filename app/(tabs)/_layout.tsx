@@ -3,7 +3,12 @@ import {Platform} from "react-native";
 import React from "react";
 import {IconSymbol} from "@/ui-kit/IconSymbol";
 import MealsDataProvider from "@/modules/Meal/contexts/MealsDataContext";
+
+// use http if you have server setup
 import {mealsHttp} from "@/modules/Meal/repository/MealsHttp";
+
+// use async local storage if you didn't bother to setup a server
+// import {mealsPersistantMemory} from "@/modules/Meal/repository/MealsPersistantMemory";
 
 export default function TabLayout() {
 
