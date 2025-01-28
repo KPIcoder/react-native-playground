@@ -1,7 +1,3 @@
-# Welcome to your Expo app 👋
-
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
 ## Get started
 
 1. Install dependencies
@@ -15,36 +11,43 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
     npx expo start
    ```
+   
+3. Head to `app/(tabs)/_layout.tsx`
 
-In the output, you'll find options to open the app in a
+Choose `mealsPersistantMemory` as a meals data provider. 
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## HTTP server 
+### requirements
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Docker
+- psql or db manager
 
-## Get a fresh project
+1. clone https://github.com/KPIcoder/data-in-cloud
+2. switch to `lab-4-infra`
+3. create `.env` file and copy
+````
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=Qwerty12345
+POSTGRES_DB=postgres
 
-When you're ready, run:
+MONGO_INITDB_ROOT_USERNAME=mongoadmin
+MONGO_INITDB_ROOT_PASSWORD=SecureMongo123
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+DOTNET_ENVIRONMENT=Production
+DB_CONNECTION_STRING=Host=postgres;Port=5432;Database=postgres;Username=postgres;Password=Qwerty12345
+MONGO_CONNECTION_STRING=mongodb://mongoadmin:SecureMongo123@mongo:27017
+MONGO_DATABASE_NAME=data-in-cloud
+````
+4. run `docker-compose up`
+5. execute in a db console 
+``````sql
+create table "Meals"(
+id serial primary key not null,
+name text not null,
+price int not null,
+is_available boolean
+)
+``````
+6. switch to frontend and head to `constants/external-links`
+7. substitute '10.0.0.7' with your IP address to have cross-platform support
+8. And you should be all set!
