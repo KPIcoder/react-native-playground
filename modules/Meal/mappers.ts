@@ -5,5 +5,5 @@ export const mapMealApiToModel = (meal: MealApiModel): Meal => ({
     id: meal.id,
     name: meal.name,
     price: meal.price,
-    isAvailable: meal.is_available
+    isAvailable: meal.isAvailable
 })

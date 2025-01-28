@@ -44,7 +44,7 @@ export class MealsHttp implements MealsRepository {
     }
     async updateMeal(meal: Meal): Promise<Meal> {
         const response = await fetch(`${MAIN_API_BASE_URL}/meals/${meal.id}`, {
-            method: "PUT",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
