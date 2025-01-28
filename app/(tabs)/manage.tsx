@@ -4,7 +4,7 @@ import AddMealForm from "@/modules/Meal/components/AddMealForm";
 import {useMealsRepository} from "@/modules/Meal/hooks/useMealsRepository";
 
 
-export default function ExploreScreen() {
+export default function ManageScreen() {
 
     const {addMeal} = useMealsRepository()
 
