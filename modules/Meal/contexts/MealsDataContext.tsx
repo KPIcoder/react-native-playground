@@ -27,22 +27,19 @@ export default function MealsDataProvider({mealRepository, children}: Props) {
 
     const addMeal = async  (meal: Meal) => {
         const newMeal = await mealRepository.addMeal(meal);
-        setMeals((prev) => [...prev, newMeal]);
+        setMeals([...mealRepository.meals]);
         return newMeal;
     }
 
     const updateMeal = async  (meal: Meal) => {
         const newMeal = await mealRepository.updateMeal(meal);
-        const updatedMeals = meals.filter((m: Meal) => m.id !== meal.id);
-        updatedMeals.push(newMeal);
-        setMeals(updatedMeals);
+        setMeals([...mealRepository.meals])
         return newMeal;
     }
 
     const deleteMeal = async  (meal: Meal) => {
         await mealRepository.deleteMeal(meal);
-        const updatedMeals = meals.filter((m: Meal) => m.id !== meal.id);
-        setMeals(updatedMeals);
+        setMeals([...mealRepository.meals])
     }
 
 
