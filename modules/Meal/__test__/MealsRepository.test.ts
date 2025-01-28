@@ -2,8 +2,8 @@ import {MealsFake} from "@/modules/Meal/repository/MealsFake";
 import {Meal} from "@/modules/Meal/interfaces/Meal";
 
 const MEALS_STUB: Meal[] = [
-    {id: 1, name: 'Meal1', price: 25 },
-    {id: 2, name: 'Meal2', price: 35 }
+    {id: 1, name: 'Meal1', price: 25, isAvailable: true },
+    {id: 2, name: 'Meal2', price: 35, isAvailable: false },
 ]
 
 describe('MealRepository', () => {
@@ -23,7 +23,7 @@ describe('MealRepository', () => {
 
     it('Should add a Meal', async  () => {
         const mealRepository = new MealsFake([])
-        const meal: Meal = {id: 1, name: 'Meal1', price: 5}
+        const meal: Meal = {id: 1, name: 'Meal1', price: 5, isAvailable: false}
 
         await mealRepository.addMeal(meal)
 

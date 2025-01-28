@@ -6,6 +6,7 @@ const MEAL_STUB: Meal = {
     id: 1,
     name: 'Meal1',
     price: 100,
+    isAvailable: true,
 }
 
 describe('<MealCard />', () => {
@@ -15,6 +16,6 @@ describe('<MealCard />', () => {
         );
 
         getByText('Meal1');
-        getByText('100');
+        getByText('$100.00');
     });
 });
